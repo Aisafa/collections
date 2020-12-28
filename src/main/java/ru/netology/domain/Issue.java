@@ -7,20 +7,20 @@ public class Issue {
     private String title;
     private String description;
     private boolean open;
-    private String author;
-    private String assignee;
-    private String label;
+    private Set<String> author;
+    private Set<String> assignee;
+    private Set<String> labels;
     private String component;
     private String type;
 
-    public Issue(int id, String title, String description, boolean open, String author, String assignee, String label, String component, String type) {
+    public Issue(int id, String title, String description, boolean open, Set<String> author, Set<String> assignee, Set<String> labels, String component, String type) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.open = open;
         this.author = author;
         this.assignee = assignee;
-        this.label = label;
+        this.labels = labels;
         this.component = component;
         this.type = type;
     }
@@ -28,17 +28,16 @@ public class Issue {
     public Issue() {
     }
 
-
     @Override
     public String toString() {
-        return "\n"+"Issue{" +
+        return "\n" + " Issue { " +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", open=" + open +
-                ", author='" + author + '\'' +
-                ", assignee='" + assignee + '\'' +
-                ", label=" + label +
+                ", author=" + author +
+                ", assignee=" + assignee +
+                ", labels=" + labels +
                 ", component='" + component + '\'' +
                 ", type='" + type + '\'' +
                 '}';
@@ -76,29 +75,28 @@ public class Issue {
         this.open = open;
     }
 
-    public String getAuthor() {
+    public Set<String> getAuthor() {
         return author;
     }
 
-    public void setAuthor() {
+    public void setAuthor(Set<String> author) {
         this.author = author;
     }
 
-    public String getAssignee() {
+    public Set<String> getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(String assignee) {
+    public void setAssignee(Set<String> assignee) {
         this.assignee = assignee;
     }
 
-
-    public String getLabel() {
-        return label;
+    public Set<String> getLabels() {
+        return labels;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setLabels(Set<String> labels) {
+        this.labels = labels;
     }
 
     public String getComponent() {
@@ -121,8 +119,5 @@ public class Issue {
         return open;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
 }

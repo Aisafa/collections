@@ -2,29 +2,26 @@ package ru.netology.repository;
 
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
+import ru.netology.manager.IssueManager;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class IssueRepositoryTest {
+    private IssueManager manager = new IssueManager();
     private IssueRepository repository = new IssueRepository();
-    private Issue first = new Issue(1, "one", "description",true, "Aidar", "Ruslan", "Kotlin", "back",  "bug");
-    private Issue second = new Issue(2, "two", "description",false, "Natalya", "Alex", "Reporting", "front", "bug");
-    private Issue third = new Issue(3, "three", "description",true, "Tatyana", "Igor", "Tools", "Analytics",  "bug");
-    private Issue fourth = new Issue(4, "four", "description",true, "Nikita", "Ruslan", "Gradle", "back", "bug");
-    List<Issue> items = new ArrayList<>();
+    private Issue first = new Issue(1, "one", "description", true, Set.of("Aidar"), Set.of("Ruslan"), Set.of("Tools"), "back", "bug");
+    private Issue second = new Issue(2, "two", "description", false, Set.of("Natalya"), Set.of("Alex"), Set.of("Gradle"), "front", "bug");
+    private Issue third = new Issue(3, "three", "description", true, Set.of("Tatyana"), Set.of("Igor"), Set.of("Tools"), "Analytics", "bug");
+    private Issue fourth = new Issue(4, "four", "description", true, Set.of("Aidar"), Set.of("Ruslan"), Set.of("Gradle"), "front", "bug");
+    private Issue fifth = new Issue(5, "five", "description", false, Set.of("Aidar"), Set.of("Igor"), Set.of("Kotlin"), "back", "bug");
+    private Issue sixth = new Issue(6, "six", "description", true, Set.of("Vova"), Set.of("Igor"), Set.of("Tools"), "front", "bug");
+    private Issue seventh = new Issue(7, "seven", "description", false, Set.of("Alex"), Set.of("Igor"), Set.of("Gradle"), "Analytics", "bug");
+    private List<Issue> items = new ArrayList<>(List.of(fifth, seventh, third, second, first, fourth, sixth));
 
     @Test
     void shouldAddIssue() {
         repository.add(third);
-        items.add(first);
-        items.add(second);
-        System.out.println(items);
     }
 
 }

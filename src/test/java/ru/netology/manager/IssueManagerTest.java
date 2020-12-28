@@ -3,11 +3,8 @@ package ru.netology.manager;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collector;
-
 
 class IssueManagerTest {
     private IssueManager manager = new IssueManager();
@@ -50,19 +47,20 @@ class IssueManagerTest {
         manager.getByCloseIssue(items);
         System.out.println(items);
     }
+
     @Test
     void shouldOpenIssue() {
-        manager.openIssue(items,2);
-          }
+        manager.openIssue(items, 2);
+    }
 
     @Test
     void shouldOpenIssueNotId() {
-        manager.openIssue(items,8);
+        manager.openIssue(items, 8);
     }
 
     @Test
     void shouldCloseIssue() {
-        manager.closeIssue(items,4);
+        manager.closeIssue(items, 4);
     }
 
     @Test
