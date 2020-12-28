@@ -14,20 +14,21 @@ class ComparatorInt implements Comparator<Issue> {
 
 public class IssueManager {
 
-    public void filterByAuthor(List<Issue> items, String author) {
-        items.removeIf(Predicate.not(a -> a.getAuthor().contains(author)));
+    public void filterByAuthor(List<Issue> items, Set<String> author) {
+        items.removeIf(Predicate.not(a -> a.getAuthor().containsAll(author)));
         Collections.sort(items, new ComparatorInt());
     }
 
-    public void filterByLabel(List<Issue> items, String label) {
-        items.removeIf(Predicate.not(a -> a.getLabel().contains(label)));
+    public void filterByLabel(List<Issue> items,Set<String> labels) {
+        items.removeIf(Predicate.not(a -> a.getLabels().containsAll(labels)));
         Collections.sort(items, new ComparatorInt());
     }
 
-    public void filterByAssignee(List<Issue> items, String assignee) {
-        items.removeIf(Predicate.not(a -> a.getAssignee().contains(assignee)));
+    public void filterByAssignee(List<Issue> items, Set<String> assignee) {
+        items.removeIf(Predicate.not(a -> a.getAssignee().containsAll(assignee)));
         Collections.sort(items, new ComparatorInt());
     }
+
 
     public void getByOpenIssue(List<Issue> items) {
         items.removeIf(Predicate.not(Issue::getOpen));
