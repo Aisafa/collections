@@ -1,5 +1,7 @@
 package ru.netology.domain;
 
+import java.util.Set;
+
 public class Issue {
     private int id;
     private String title;
@@ -11,11 +13,7 @@ public class Issue {
     private String component;
     private String type;
 
-
-
-    public Issue(int id, String title, String description, boolean open,
-                 String author, String assignee, String label,
-                 String component, String type) {
+    public Issue(int id, String title, String description, boolean open, String author, String assignee, String label, String component, String type) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -25,25 +23,25 @@ public class Issue {
         this.label = label;
         this.component = component;
         this.type = type;
-
     }
 
     public Issue() {
     }
 
+
     @Override
     public String toString() {
-        return "\n"+ "Issue № " + id + " { " +
+        return "\n"+"Issue{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", open=" + open +
                 ", author='" + author + '\'' +
                 ", assignee='" + assignee + '\'' +
-                ", label='" + label + '\'' +
+                ", label=" + label +
                 ", component='" + component + '\'' +
                 ", type='" + type + '\'' +
-                '}' + "\n";
+                '}';
     }
 
     public int getId() {
@@ -93,6 +91,7 @@ public class Issue {
     public void setAssignee(String assignee) {
         this.assignee = assignee;
     }
+
 
     public String getLabel() {
         return label;
