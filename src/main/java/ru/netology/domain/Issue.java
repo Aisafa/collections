@@ -73,7 +73,7 @@ public class Issue {
 
     public void setOpen(boolean open) {
         this.open = open;
-    }
+          }
 
     public Set<String> getAuthor() {
         return author;

@@ -6,6 +6,8 @@ import ru.netology.domain.Issue;
 import java.util.*;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class IssueManagerTest {
     private IssueManager manager = new IssueManager();
     private Issue first = new Issue(1, "one", "description", true, Set.of("Aidar"), Set.of("Ruslan"), Set.of("Tools"), "back", "bug");
@@ -15,7 +17,6 @@ class IssueManagerTest {
     private Issue fifth = new Issue(5, "five", "description", false, Set.of("Aidar"), Set.of("Igor"), Set.of("Kotlin"), "back", "bug");
     private Issue sixth = new Issue(6, "six", "description", true, Set.of("Vova"), Set.of("Igor"), Set.of("Tools"), "front", "bug");
     private Issue seventh = new Issue(7, "seven", "description", false, Set.of("Alex"), Set.of("Igor"), Set.of("Gradle"), "Analytics", "bug");
-    private List<Issue> itemss = new ArrayList<>(List.of(fifth, seventh, third, second, first, fourth, sixth));
 
     @Test
     void shouldFilterByAuthor() {
@@ -26,7 +27,9 @@ class IssueManagerTest {
         manager.add(third);
         manager.add(seventh);
         manager.add(sixth);
-        manager.filterByAuthor(Set.of("Aidar"));
+        List<Issue> actual = manager.filterByAuthor(Set.of("Aidar"));
+        List<Issue> expected = new ArrayList<>(List.of(first, fourth, fifth));
+        assertEquals(actual, expected);
     }
 
     @Test
@@ -38,7 +41,9 @@ class IssueManagerTest {
         manager.add(third);
         manager.add(seventh);
         manager.add(sixth);
-        manager.filterByLabel(Set.of("Tools"));
+        List<Issue> actual = manager.filterByLabel(Set.of("Tools"));
+        List<Issue> expected = new ArrayList<>(List.of(first, third, sixth));
+        assertEquals(actual, expected);
     }
 
     @Test
@@ -50,31 +55,37 @@ class IssueManagerTest {
         manager.add(third);
         manager.add(seventh);
         manager.add(sixth);
-        manager.filterByAssignee(Set.of("Igor"));
+        List<Issue> actual = manager.filterByAssignee(Set.of("Ruslan"));
+        List<Issue> expected = new ArrayList<>(List.of(first, fourth));
+        assertEquals(actual, expected);
     }
 
     @Test
     void shouldGetOpenIssue() {
+        manager.add(sixth);
         manager.add(fifth);
         manager.add(first);
-        manager.add(fourth);
         manager.add(second);
         manager.add(third);
+        manager.add(fourth);
         manager.add(seventh);
-        manager.add(sixth);
-        manager.getByOpenIssue();
+        List<Issue> actual = manager.getByOpenIssue();
+        List<Issue> expected = new ArrayList<>(List.of(first, third, fourth, sixth));
+        assertEquals(expected, actual);
     }
 
     @Test
     void shouldGetCloseIssue() {
+        manager.add(sixth);
         manager.add(fifth);
         manager.add(first);
         manager.add(fourth);
         manager.add(second);
         manager.add(third);
         manager.add(seventh);
-        manager.add(sixth);
-        manager.getByCloseIssue();
+        List<Issue> actual = manager.getByCloseIssue();
+        List<Issue> expected = new ArrayList<>(List.of(second, fifth, seventh));
+        assertEquals(expected, actual);
     }
 
     @Test
