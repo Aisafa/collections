@@ -15,59 +15,90 @@ class IssueManagerTest {
     private Issue fifth = new Issue(5, "five", "description", false, Set.of("Aidar"), Set.of("Igor"), Set.of("Kotlin"), "back", "bug");
     private Issue sixth = new Issue(6, "six", "description", true, Set.of("Vova"), Set.of("Igor"), Set.of("Tools"), "front", "bug");
     private Issue seventh = new Issue(7, "seven", "description", false, Set.of("Alex"), Set.of("Igor"), Set.of("Gradle"), "Analytics", "bug");
-    private List<Issue> items = new ArrayList<>(List.of(fifth, seventh, third, second, first, fourth, sixth));
-
-    @Test
-    void shouldFilterByLabel() {
-        manager.filterByLabel(items, Set.of("Tools"));
-        System.out.println(items);
-    }
+    private List<Issue> itemss = new ArrayList<>(List.of(fifth, seventh, third, second, first, fourth, sixth));
 
     @Test
     void shouldFilterByAuthor() {
-        manager.filterByAuthor(items, Set.of("Aidar"));
-        System.out.println(items);
+        manager.add(fifth);
+        manager.add(first);
+        manager.add(fourth);
+        manager.add(second);
+        manager.add(third);
+        manager.add(seventh);
+        manager.add(sixth);
+        manager.filterByAuthor(Set.of("Aidar"));
+    }
+
+    @Test
+    void shouldFilterByLabel() {
+        manager.add(fifth);
+        manager.add(first);
+        manager.add(fourth);
+        manager.add(second);
+        manager.add(third);
+        manager.add(seventh);
+        manager.add(sixth);
+        manager.filterByLabel(Set.of("Tools"));
     }
 
     @Test
     void shouldFilterByAssignee() {
-        manager.filterByAssignee(items, Set.of("Igor"));
-        System.out.println(items);
+        manager.add(fifth);
+        manager.add(first);
+        manager.add(fourth);
+        manager.add(second);
+        manager.add(third);
+        manager.add(seventh);
+        manager.add(sixth);
+        manager.filterByAssignee(Set.of("Igor"));
     }
-
 
     @Test
     void shouldGetOpenIssue() {
-        manager.getByOpenIssue(items);
-        System.out.println(items);
+        manager.add(fifth);
+        manager.add(first);
+        manager.add(fourth);
+        manager.add(second);
+        manager.add(third);
+        manager.add(seventh);
+        manager.add(sixth);
+        manager.getByOpenIssue();
     }
 
     @Test
     void shouldGetCloseIssue() {
-        manager.getByCloseIssue(items);
-        System.out.println(items);
+        manager.add(fifth);
+        manager.add(first);
+        manager.add(fourth);
+        manager.add(second);
+        manager.add(third);
+        manager.add(seventh);
+        manager.add(sixth);
+        manager.getByCloseIssue();
     }
 
     @Test
     void shouldOpenIssue() {
-        manager.openIssue(items, 2);
+        manager.add(second);
+        manager.openIssue(2);
     }
 
     @Test
     void shouldOpenIssueNotId() {
-        manager.openIssue(items, 8);
+        manager.add(seventh);
+        manager.openIssue(8);
     }
 
     @Test
     void shouldCloseIssue() {
-        manager.closeIssue(items, 4);
+        manager.add(fourth);
+        manager.closeIssue(4);
     }
 
     @Test
     void shouldCloseIssueNotID() {
-        manager.closeIssue(items, 9);
+        manager.add(second);
+        manager.closeIssue(9);
     }
-
-
 }
 

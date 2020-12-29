@@ -118,6 +118,4 @@ public class Issue {
     public boolean isOpen() {
         return open;
     }
-
-
 }

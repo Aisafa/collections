@@ -2,13 +2,10 @@ package ru.netology.repository;
 
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Issue;
-import ru.netology.manager.IssueManager;
 
 import java.util.*;
-import java.util.List;
 
 class IssueRepositoryTest {
-    private IssueManager manager = new IssueManager();
     private IssueRepository repository = new IssueRepository();
     private Issue first = new Issue(1, "one", "description", true, Set.of("Aidar"), Set.of("Ruslan"), Set.of("Tools"), "back", "bug");
     private Issue second = new Issue(2, "two", "description", false, Set.of("Natalya"), Set.of("Alex"), Set.of("Gradle"), "front", "bug");
@@ -17,7 +14,6 @@ class IssueRepositoryTest {
     private Issue fifth = new Issue(5, "five", "description", false, Set.of("Aidar"), Set.of("Igor"), Set.of("Kotlin"), "back", "bug");
     private Issue sixth = new Issue(6, "six", "description", true, Set.of("Vova"), Set.of("Igor"), Set.of("Tools"), "front", "bug");
     private Issue seventh = new Issue(7, "seven", "description", false, Set.of("Alex"), Set.of("Igor"), Set.of("Gradle"), "Analytics", "bug");
-    private List<Issue> items = new ArrayList<>(List.of(fifth, seventh, third, second, first, fourth, sixth));
 
     @Test
     void shouldAddIssue() {
